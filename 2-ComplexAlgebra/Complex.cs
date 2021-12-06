@@ -39,29 +39,18 @@ namespace ComplexAlgebra
             Imaginary = imm;
         }
 
-        public double Modulus
-        {
-            get => System.Math.Sqrt(Real * Real + Imaginary * Imaginary);
-        }
+        public double Modulus => System.Math.Sqrt(Real * Real + Imaginary * Imaginary);
+        
 
-        public double Phase
-        {
-            get => System.Math.Atan2(Imaginary, Real);
-        }
+        public double Phase => System.Math.Atan2(Imaginary, Real);
+        
+        public Complex Complement() => new Complex(Real, -Imaginary);
+        
 
-        public Complex Complement()
-        {
-            return new Complex(Real, -Imaginary);
-        }
-
-        public Complex Plus(Complex c)
-        {
-            return new Complex(Real + c.Real, Imaginary + c.Imaginary);
-        }
-        public Complex Minus(Complex c)
-        {
-            return new Complex(Real - c.Real, Imaginary - c.Imaginary);
-        }
+        public Complex Plus(Complex c)=> new Complex(Real + c.Real, Imaginary + c.Imaginary);
+        
+        public Complex Minus(Complex c)=> new Complex(Real - c.Real, Imaginary - c.Imaginary);
+        
 
         public override string ToString()
         {

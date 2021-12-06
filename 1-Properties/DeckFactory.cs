@@ -25,10 +25,8 @@ namespace Properties
             set => _names = value.ToArray();
         }
 
-        public int DeckSize
-        {
-            get => _names.Length * _seeds.Length;
-        }
+        public int DeckSize => _names.Length * _seeds.Length;
+        
 
         public ISet<Card> Deck
         {
