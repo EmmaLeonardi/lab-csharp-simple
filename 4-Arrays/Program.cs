@@ -51,9 +51,9 @@ namespace Arrays
             else
             {
                 Complex[] copyArray = new Complex[array.Length];
-                for (int i=0; i<array.Length;i++)
+                for (int i = 0; i < array.Length; i++)
                 {
-                    copyArray[i]= array[i];
+                    copyArray[i] = array[i];
                 }
                 return copyArray;
             }
@@ -66,13 +66,14 @@ namespace Arrays
         /// <param name="array">an array of <see cref="Complex"/> numbers</param>
         /// <returns>the shallow copy of <paramref name="array"/></returns>
         /// <exception cref="NullReferenceException">if <paramref name="array"/> is <c>null</c></exception>
-        ///
-        /// TODO: implement this method
-        /// TODO: (consider reusing the Clone method)
         /// <seealso cref="Examples.BubbleSort"/>
         public static Complex[] SortByPhase(Complex[] array)
         {
-            return null; // TODO: remove this line
+            Complex[] copyArray = Program.Clone(array);
+            copyArray.OrderBy(a=>a.Phase);
+            return copyArray;
+
+
         }
 
         /// <summary>
@@ -97,38 +98,38 @@ namespace Arrays
         /// TODO: uncomment the commented code, if any
         static void Main(string[] args)
         {
-            // Complex[] numbers = new[] {
-            //     new Complex(0, 0),
-            //     new Complex(1, 1),
-            //     new Complex(0, 1), 
-            //     new Complex(-2, 2),
-            //     new Complex(-3, 0),
-            //     new Complex(-2, -2),
-            //     new Complex(0, -4),
-            //     new Complex(1, -1),
-            //     new Complex(1, 0)
-            // }; 
-            //
-            // Complex[] orderedByPhase = new[] {
-            //     new Complex(-2, -2),
-            //     new Complex(0, -4),
-            //     new Complex(1, -1),
-            //     new Complex(0, 0),
-            //     new Complex(1, 0),
-            //     new Complex(1, 1),
-            //     new Complex(0, 1),
-            //     new Complex(-2, 2),
-            //     new Complex(-3, 0)
-            // };
-            //
-            // var cloned = numbers;
-            //
-            // ArraysAreEqual(cloned, numbers);
-            // ArraysAreEqual(SortByPhase(numbers), orderedByPhase);
-            // ArraysAreEqual(numbers, cloned);
-            // CheckComplexNumber(MaxModulus(numbers), new Complex(0, -4));
-            // CheckComplexNumber(MaxModulus(orderedByPhase), new Complex(0, -4));
-            // CheckComplexNumber(MaxModulus(cloned), new Complex(0, -4));
+            Complex[] numbers = new[] {
+                 new Complex(0, 0),
+                 new Complex(1, 1),
+                 new Complex(0, 1),
+                 new Complex(-2, 2),
+                 new Complex(-3, 0),
+                 new Complex(-2, -2),
+                 new Complex(0, -4),
+                 new Complex(1, -1),
+                 new Complex(1, 0)
+             };
+
+            Complex[] orderedByPhase = new[] {
+                 new Complex(-2, -2),
+                 new Complex(0, -4),
+                 new Complex(1, -1),
+                 new Complex(0, 0),
+                 new Complex(1, 0),
+                 new Complex(1, 1),
+                 new Complex(0, 1),
+                 new Complex(-2, 2),
+                 new Complex(-3, 0)
+             };
+
+            var cloned = numbers;
+
+            ArraysAreEqual(cloned, numbers);
+            ArraysAreEqual(SortByPhase(numbers), orderedByPhase);
+            ArraysAreEqual(numbers, cloned);
+            CheckComplexNumber(MaxModulus(numbers), new Complex(0, -4));
+            CheckComplexNumber(MaxModulus(orderedByPhase), new Complex(0, -4));
+            CheckComplexNumber(MaxModulus(cloned), new Complex(0, -4));
         }
 
         /// <summary>
