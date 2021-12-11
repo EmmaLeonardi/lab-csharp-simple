@@ -19,7 +19,22 @@ namespace Arrays
         /// <seealso cref="Examples.Max"/>
         public static Complex MaxModulus(Complex[] array)
         {
-            return null; // TODO: remove this line
+            Complex max = new Complex(0, 0);
+            if (array.Length.Equals(0))
+            {
+                return null;
+            }
+            else
+            {
+                foreach (Complex elem in array)
+                {
+                    if (max.Modulus > elem.Modulus)
+                    {
+                        max = new Complex(elem.Real, elem.Imaginary);
+                    }
+                }
+                return max;
+            }
         }
 
         /// <summary>
@@ -51,7 +66,7 @@ namespace Arrays
         {
             return null; // TODO: remove this line
         }
-        
+
         /// <summary>
         /// Creates a representation of the provided array of <see cref="Complex"/> as a string.
         /// Items of <paramref name="array"/> are represented via their <see cref="Complex.ToString"/> method.
@@ -66,7 +81,7 @@ namespace Arrays
         {
             return null; // TODO: remove this line
         }
-        
+
         /// <summary>
         /// Test method for the aforementioned array algorithms
         /// </summary>
@@ -135,7 +150,7 @@ namespace Arrays
             }
             Console.WriteLine($"Array {ArrayToString(actual)} is ok");
         }
-        
+
         /// <summary>
         /// Checks whether the <paramref name="actual"/> <see cref="Complex"/> number is equal to the
         /// <paramref name="expected"/> one (via the <see cref="Complex.Equals(object)"/> method).
