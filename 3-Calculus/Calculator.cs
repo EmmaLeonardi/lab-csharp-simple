@@ -41,7 +41,7 @@ namespace Calculus
                 if (_op.Equals(OperationNull))
                 {
                     _lastInputValue = new Complex(value.Real, value.Imaginary);
-                    _onDisplay = _lastInputValue.ToString();
+                    _memorizedValue = new Complex(value.Real, Value.Imaginary);
                 }
                 else
                 {
@@ -54,9 +54,9 @@ namespace Calculus
                     {
                         _memorizedValue.Minus(value);
                     }
-                    _onDisplay = null;
                     _op = OperationNull;
                 }
+                _onDisplay = _lastInputValue.ToString();
             }
         }
 
