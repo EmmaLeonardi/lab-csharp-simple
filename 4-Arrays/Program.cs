@@ -14,8 +14,6 @@ namespace Arrays
         /// <returns>the <see cref="Complex"/> number with highest modulus in <paramref name="array"/>,
         /// or <c>null</c> in case <paramref name="array"/> is empty</returns>
         /// <exception cref="NullReferenceException">if <paramref name="array"/> is <c>null</c></exception>
-        ///
-        /// TODO: implement this method
         /// <seealso cref="Examples.Max"/>
         public static Complex MaxModulus(Complex[] array)
         {
@@ -44,11 +42,21 @@ namespace Arrays
         /// <param name="array">an array of <see cref="Complex"/> numbers</param>
         /// <returns>the shallow copy of <paramref name="array"/></returns>
         /// <exception cref="NullReferenceException">if <paramref name="array"/> is <c>null</c></exception>
-        ///
-        /// TODO: implement this method
         public static Complex[] Clone(Complex[] array)
         {
-            return null; // TODO: remove this line
+            if (array.Length.Equals(0))
+            {
+                throw new NullReferenceException("Cannot copy an empty array");
+            }
+            else
+            {
+                Complex[] copyArray = new Complex[array.Length];
+                for (int i=0; i<array.Length;i++)
+                {
+                    copyArray[i]= array[i];
+                }
+                return copyArray;
+            }
         }
 
         /// <summary>
