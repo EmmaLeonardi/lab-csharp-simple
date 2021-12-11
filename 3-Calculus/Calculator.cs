@@ -29,7 +29,7 @@ namespace Calculus
         private const char OperationNull = '\0';
         private string _onDisplay = "null";
         private Complex _lastInputValue;
-        private Complex _memorizedValue = new Complex(0, 0);
+        private Complex _memorizedValue;
         private char _op = OperationNull;
 
         //Proprietà-> Value, passi i valori da sommare/sottrarre, mostrato su display (ritornabile)
@@ -41,21 +41,22 @@ namespace Calculus
                 if (_op.Equals(OperationNull))
                 {
                     _lastInputValue = new Complex(value.Real, value.Imaginary);
-                    _memorizedValue = new Complex(value.Real, Value.Imaginary);
+                    _memorizedValue = new Complex(value.Real, value.Imaginary);
                 }
                 else
                 {
                     //Ho un operazione, per forza e' legale
                     if (_op.Equals(OperationPlus))
                     {
-                        _memorizedValue.Plus(value);
+                        _memorizedValue=_memorizedValue.Plus(value);
                     }
                     else
                     {
-                        _memorizedValue.Minus(value);
+                         _memorizedValue=_memorizedValue.Minus(value);
                     }
                     _op = OperationNull;
                 }
+                _lastInputValue = value;
                 _onDisplay = _lastInputValue.ToString();
             }
         }
@@ -91,6 +92,7 @@ namespace Calculus
         public void ComputeResult()
         {
             _op = OperationNull;
+            _lastInputValue = _memorizedValue;
             _onDisplay = _memorizedValue.ToString();
             return;
         }
