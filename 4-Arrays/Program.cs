@@ -84,18 +84,26 @@ namespace Arrays
         /// <param name="array">an array of <see cref="Complex"/> numbers</param>
         /// <returns>a string</returns>
         /// <exception cref="NullReferenceException">if <paramref name="array"/> is <c>null</c></exception>
-        /// 
-        /// TODO: implement this method
-        public static string ArrayToString(Complex[] array)
+         public static string ArrayToString(Complex[] array)
         {
-            return null; // TODO: remove this line
+            string s = "";
+            if (array.Length.Equals(0))
+            {
+                throw new NullReferenceException("Cannot create a representation of an empty array");
+            }
+            else
+            {
+                foreach(Complex elem in array)
+                {
+                    s += "[ " + elem.ToString() + " ], ";
+                }
+                return s;
+            }
         }
 
         /// <summary>
         /// Test method for the aforementioned array algorithms
         /// </summary>
-        /// 
-        /// TODO: uncomment the commented code, if any
         static void Main(string[] args)
         {
             Complex[] numbers = new[] {
