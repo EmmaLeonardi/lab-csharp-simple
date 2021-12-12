@@ -17,16 +17,17 @@ namespace Arrays
         /// <seealso cref="Examples.Max"/>
         public static Complex MaxModulus(Complex[] array)
         {
-            Complex max = new Complex(0, 0);
+            
             if (array.Length.Equals(0))
             {
                 return null;
             }
             else
             {
+                Complex max = new Complex(array[0].Real,array[0].Imaginary);
                 foreach (Complex elem in array)
                 {
-                    if (max.Modulus > elem.Modulus)
+                    if (max.Modulus < elem.Modulus)
                     {
                         max = new Complex(elem.Real, elem.Imaginary);
                     }
@@ -69,9 +70,7 @@ namespace Arrays
         /// <seealso cref="Examples.BubbleSort"/>
         public static Complex[] SortByPhase(Complex[] array)
         {
-            Complex[] copyArray = Program.Clone(array);
-            copyArray.OrderBy(a=>a.Phase);
-            return copyArray;
+            return Program.Clone(array).OrderBy(a => a.Phase).ToArray();
 
 
         }
