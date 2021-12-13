@@ -32,11 +32,10 @@ namespace Iterators
         /// <returns>the new sequence.</returns>
         public static IEnumerable<TAny> Peek<TAny>(this IEnumerable<TAny> sequence, Action<TAny> consumer)
         {
-            ForEach(sequence, consumer);
             foreach (TAny elem in sequence)
             {
+                consumer(elem);
                 yield return elem;
-
             }
         }
 
@@ -71,7 +70,7 @@ namespace Iterators
         {
             foreach (TAny elem in sequence)
             {
-                if (predicate(elem) == true)
+                if (predicate(elem).Equals(true))
                 {
                     yield return elem;
                 }
@@ -87,7 +86,7 @@ namespace Iterators
         public static IEnumerable<Tuple<int, TAny>> Indexed<TAny>(this IEnumerable<TAny> sequence)
         {
             int i = 0;
-           foreach(TAny elem in sequence)
+            foreach (TAny elem in sequence)
             {
                 yield return new Tuple<int, TAny>(i, elem);
                 i++;
@@ -106,12 +105,13 @@ namespace Iterators
         /// <returns>the new sequence.</returns>
         public static TOther Reduce<TAny, TOther>(this IEnumerable<TAny> sequence, TOther seed, Func<TOther, TAny, TOther> reducer)
         {
-            foreach(TAny elem in sequence)
+            TOther result;
+            foreach (TAny elem in sequence)
             {
-                return reducer(seed, elem);
+                result = reducer(seed, elem);
             }
 
-            return seed;
+            //Siamo qua
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace Iterators
         public static IEnumerable<TAny> SkipWhile<TAny>(this IEnumerable<TAny> sequence, Predicate<TAny> predicate)
         {
             bool fistElementSatisfied = false;
-            foreach(TAny elem in sequence)
+            foreach (TAny elem in sequence)
             {
                 if (predicate(elem) == true && fistElementSatisfied == false)
                 {
@@ -148,7 +148,7 @@ namespace Iterators
         public static IEnumerable<TAny> SkipSome<TAny>(this IEnumerable<TAny> sequence, long count)
         {
             long discarded = 0L;
-            foreach(TAny elem in sequence)
+            foreach (TAny elem in sequence)
             {
                 if (discarded < count)
                 {
@@ -196,7 +196,7 @@ namespace Iterators
         /// <returns>an infinite sequence of integers.</returns>
         public static IEnumerable<int> Integers(int start)
         {
-            for(int i=start; ; i++)
+            for (int i = start; ; i++)
             {
                 yield return i;
             }
