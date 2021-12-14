@@ -105,13 +105,22 @@ namespace Iterators
         /// <returns>the new sequence.</returns>
         public static TOther Reduce<TAny, TOther>(this IEnumerable<TAny> sequence, TOther seed, Func<TOther, TAny, TOther> reducer)
         {
-            TOther result;
+            TOther result = default;
+            bool first = false;
             foreach (TAny elem in sequence)
             {
-                result = reducer(seed, elem);
+                if (first == false)
+                {
+                    first = true;
+                    result = reducer(seed, elem);
+                }
+                else
+                {
+                    result = reducer(seed, elem);
+                }
             }
 
-            //Siamo qua
+            return first==true? result: default;
         }
 
         /// <summary>
@@ -156,7 +165,6 @@ namespace Iterators
                 }
                 else yield return elem;
             }
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -171,8 +179,13 @@ namespace Iterators
         /// <returns>the new sequence.</returns>
         public static IEnumerable<TAny> TakeWhile<TAny>(this IEnumerable<TAny> sequence, Predicate<TAny> predicate)
         {
-            //??
-            throw new NotImplementedException();
+            foreach (TAny elem in sequence)
+            {
+                if (predicate(elem)==true)
+                {
+                    yield return elem;
+                }
+            }
         }
 
         /// <summary>
@@ -185,8 +198,15 @@ namespace Iterators
         /// <returns>the new sequence.</returns>
         public static IEnumerable<TAny> TakeSome<TAny>(this IEnumerable<TAny> sequence, long count)
         {
-            //??
-            throw new NotImplementedException();
+            long discarded = 0L;
+            foreach (TAny elem in sequence)
+            {
+                if (discarded > count)
+                {
+                    discarded++;
+                    yield return elem;
+                }
+            }
         }
 
         /// <summary>
