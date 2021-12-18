@@ -70,7 +70,7 @@ namespace Iterators
         {
             foreach (TAny elem in sequence)
             {
-                if (predicate(elem).Equals(true))
+                if (predicate(elem))
                 {
                     yield return elem;
                 }
@@ -120,7 +120,7 @@ namespace Iterators
                 }
             }
 
-            return first==true? result: default;
+            return first == true ? result : default;
         }
 
         /// <summary>
@@ -163,7 +163,10 @@ namespace Iterators
                 {
                     discarded++;
                 }
-                else yield return elem;
+                else
+                {
+                    yield return elem;
+                }
             }
         }
 
@@ -181,7 +184,7 @@ namespace Iterators
         {
             foreach (TAny elem in sequence)
             {
-                if (predicate(elem)==true)
+                if (predicate(elem))
                 {
                     yield return elem;
                 }
@@ -198,12 +201,12 @@ namespace Iterators
         /// <returns>the new sequence.</returns>
         public static IEnumerable<TAny> TakeSome<TAny>(this IEnumerable<TAny> sequence, long count)
         {
-            long discarded = 0L;
+            long taken = 0L;
             foreach (TAny elem in sequence)
             {
-                if (discarded > count)
+                if (taken < count)
                 {
-                    discarded++;
+                    taken++;
                     yield return elem;
                 }
             }
