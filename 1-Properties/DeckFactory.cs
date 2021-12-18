@@ -9,9 +9,9 @@ namespace Properties
     /// </summary>
     public class DeckFactory
     {
-        private string[] _seeds; //{ get => Seeds.ToList(), set { Seeds.ToArray}  }
+        private string[] _seeds;
 
-        private string[] _names; //{ get { Names.ToList}, set { Names.ToArray} }
+        private string[] _names; 
 
         public IList<String> Seeds
         {
