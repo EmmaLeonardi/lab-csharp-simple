@@ -20,8 +20,7 @@ namespace ComplexAlgebra
     ///- e.g. via the Equals(object) method
     public class Complex
     {
-        //private double _real;
-        //private double _imm;
+        
 
         public double Real
         {
