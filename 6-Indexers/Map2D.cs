@@ -9,7 +9,7 @@ namespace Indexers
     public class Map2D<TKey1, TKey2, TValue> : IMap2D<TKey1, TKey2, TValue>
     {
 
-        private readonly IDictionary<Tuple<TKey1, TKey2>, TValue> map;
+        private readonly IDictionary<Tuple<TKey1, TKey2>, TValue> map=new Dictionary<Tuple<TKey1, TKey2>, TValue>();
 
         /// <inheritdoc cref="IMap2D{TKey1, TKey2, TValue}.NumberOfElements" />
         public int NumberOfElements
